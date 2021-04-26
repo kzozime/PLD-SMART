@@ -1,0 +1,20 @@
+<ion-content>
+  <div class="header-login">
+    <img src="assets/logo.png" alt="logo" class="logo-img">
+  </div>
+  <div class="buttons-login">
+    <ion-button (click)="onLoginCtn()">Se connecter</ion-button>
+    <p>Première connexion ? <a>Cliquez ici</a></p>
+  </div>
+
+  <div class="login-ctn" [ngClass]="loginCtn ? '' : 'hidden'">
+    <div class="">
+      <label for="identifiant">Identifiant</label>
+      <input type="text" id="identifiant">
+      <label for="password">Mot de passe</label>
+      <input type="text" id="password">
+      <ion-button (click)="onConnect()">Se connecter</ion-button>
+      <ion-button (click)="onLoginCtn()">Quitter</ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,35 @@
+.header-login{
+    height:65vh;
+    /*background-color:red;*/
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img{
+    height:50%;
+    width:auto;
+}
+
+.buttons-login{
+    height:35vh;
+    background-color:blue;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.login-ctn{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    top:0;
+}
+
+.hidden{
+    display:none;
+}
