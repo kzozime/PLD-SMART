@@ -1,20 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { InjectConnection } from '@nestjs/mongoose';
-import { Connection } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { User, UserDocument } from 'src/schemas/user.schema';
 
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectConnection() private connection: Connection){}
-  userConnection(mail: string, passwd: string): string {
-    if (mail === 'aymen' && passwd === 'test') {
-      return 'OK';
-    } else {
-      return 'NOT OK';
-    }
+  constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>){}
 
+  async userConnection(mail: string, passwd: string): Promise<string | undefined> {
     
-
-
+    console.log(mail);
+    const user = await this.userModel.findOne({email: mail});
+    if (user && user.password === passwd){
+      console.log("user exists and password correct ! ");
+      console.log(user);
+      return user._id;
+    }else{
+      console.log("user does not exist or password incorrect ! ");
+      return undefined;
+    }
+    
   }
 }
