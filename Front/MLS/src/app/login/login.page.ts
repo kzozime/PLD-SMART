@@ -22,6 +22,8 @@ export class LoginPage implements OnInit {
 
   onConnect(){
     this.authService.login();
+    this.router.navigateByUrl('/tabnav');
+
   }
 
   onSubscribe(){

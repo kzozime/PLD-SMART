@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'subscription',
     loadChildren: () => import('../subscription/subscription.module').then( m => m.SubscriptionPageModule)
   },
+  {
+    path: 'tabnav',
+    loadChildren: () => import('../tabnav/tabnav.module').then( m => m.TabnavPageModule)
+  },
 ];
 
 @NgModule({

@@ -18,6 +18,22 @@ const routes: Routes = [
     path: 'subscription',
     loadChildren: () => import('./subscription/subscription.module').then( m => m.SubscriptionPageModule)
   },
+  {
+    path: 'tabnav',
+    loadChildren: () => import('./tabnav/tabnav.module').then( m => m.TabnavPageModule)
+  },
+  {
+    path: 'center',
+    loadChildren: () => import('./center/center.module').then( m => m.CenterPageModule)
+  },
+  {
+    path: 'left',
+    loadChildren: () => import('./left/left.module').then( m => m.LeftPageModule)
+  },
+  {
+    path: 'right',
+    loadChildren: () => import('./right/right.module').then( m => m.RightPageModule)
+  },
 
 ];
 
