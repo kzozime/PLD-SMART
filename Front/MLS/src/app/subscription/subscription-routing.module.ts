@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SubscriptionPage } from './subscription.page';
@@ -11,7 +12,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule.forChild(routes)
+  ],
   exports: [RouterModule],
 })
 export class SubscriptionPageRoutingModule {}
