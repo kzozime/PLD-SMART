@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: LoginPage
-  }
+  },
+  {
+    path: 'subscription',
+    loadChildren: () => import('../subscription/subscription.module').then( m => m.SubscriptionPageModule)
+  },
 ];
 
 @NgModule({

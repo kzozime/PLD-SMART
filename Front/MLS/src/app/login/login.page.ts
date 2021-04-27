@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ export class LoginPage implements OnInit {
   loginCtn!: boolean;
   isAuth!: boolean;
 
-  constructor() { 
+  constructor(private authService : AuthService, private router : Router) { 
     this.isAuth = false;
     this.loginCtn = false;
   }
@@ -19,8 +21,11 @@ export class LoginPage implements OnInit {
   }
 
   onConnect(){
-    this.isAuth = true;
-    console.log(this.isAuth);
+    this.authService.login();
+  }
+
+  onSubscribe(){
+    this.router.navigateByUrl('/subscription');
   }
 
   onLoginCtn(){

@@ -12,7 +12,9 @@ export class AuthController {
   connexion(
     @Body('emailUser') emailUser: string,
     @Body('passwordUser') passwordUser: string
+    
   ): Promise<string | undefined> {
+    
     return this.authService.userConnection(emailUser, passwordUser);
   }
 }
