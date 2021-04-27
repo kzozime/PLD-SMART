@@ -11,7 +11,7 @@ import { RegisterModule } from './register/register/register.module';
             RegisterModule,
      MongooseModule.forRoot(
        'mongodb+srv://admin:PLD-SMART@mls-cluster.6ykob.mongodb.net/MLS-App'
-       )],
+       ,{ useNewUrlParser: true, useCreateIndex: true })],
   controllers: [AppController],
   providers: [AppService],
 })
