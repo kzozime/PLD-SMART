@@ -1,10 +1,21 @@
+$purple : #3908C6;
+$light-grey : #F6F6F6;
+$dark-grey : #A8A8A8;
+
 .header-login{
     height:65vh;
-    /*background-color:red;*/
+    width:100vw;
+    background-color:$light-grey;
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+}
+
+.header-login svg{
+    display:block;
+    width:100%;
+    
 }
 
 .logo-img{
@@ -14,13 +25,13 @@
 
 .buttons-login{
     height:35vh;
-    background-color:blue;
+    background-color:white;
     display:flex;
     flex-direction: column;
     align-items:center;
     justify-content: center;
 }
-
+/*
 .login-ctn{
     display:flex;
     flex-direction: column;
@@ -29,7 +40,70 @@
     position:fixed;
     top:0;
 }
+*/
+button{
+    border:none;
+    outline:inherit;
+}
+
+.connect-btn{
+    width:90vw;
+    height:40px;
+    background-color: $purple;
+    color:white;
+    font-weight:500;
+    font-size:1.2em;
+    border-radius:10px;
+}
+
+.buttons-login p{
+    color:$dark-grey;
+}
+
+.login-block{
+    background-color:white;
+    height:90vh;
+    width:100%;
+    position:fixed;
+    bottom:0;
+    left:0;
+    border-radius: 20px 20px 0px 0px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 10s ease-in;
+}
 
 .hidden{
+    position:fixed;
+    bottom:-100vh;
     display:none;
+    transition:all 10s ease-in;
+}
+
+.login-block .connect-btn{
+    width:80vw;
+}
+
+input{
+    outline:none;
+    box-shadow:none;
+    border:none;
+    border-bottom:solid 2px $light-grey;
+    width:80vw;
+    color:black;
+}
+
+#identifiant, #password{
+    margin-bottom:45px;
+}
+
+.cross{
+    position:absolute;
+    top:0;
+    left:0;
+    color:$dark-grey;
+    margin: 10px 0px 0px 10px;
+    cursor:pointer;
 }
