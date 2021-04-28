@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -12,7 +13,7 @@ export class LoginPage implements OnInit {
   loginCtn!: boolean;
   isAuth!: boolean;
 
-  constructor(private authService : AuthService, private router : Router) { 
+  constructor(private authService : AuthService, private router : Router, private _httpClient: HttpClient) { 
     this.isAuth = false;
     this.loginCtn = false;
   }
