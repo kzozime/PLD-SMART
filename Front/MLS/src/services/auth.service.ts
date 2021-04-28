@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { User } from 'src/app/models/user/user.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,10 +13,10 @@ export class AuthService {
 
   login(){
     console.log("service post");
-    this.http.post('http://localhost:3000/auth', {emailUser : 'test@front.com', passwordUser : 'test'})
+    this.http.post<User>('http://localhost:3000/auth', {emailUser : 'test@front.com', passwordUser : 'test'})
             .subscribe(loginResponse => {
 
-                console.log(loginResponse);
+                console.log(loginResponse.firstName);
 
             });
   }
