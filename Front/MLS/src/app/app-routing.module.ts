@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },  {
+  },
+  {
     path: 'subscription',
     loadChildren: () => import('./subscription/subscription.module').then( m => m.SubscriptionPageModule)
   },
@@ -34,6 +35,7 @@ const routes: Routes = [
     path: 'right',
     loadChildren: () => import('./right/right.module').then( m => m.RightPageModule)
   },
+ 
 
 ];
 
