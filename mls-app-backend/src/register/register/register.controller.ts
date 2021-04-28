@@ -17,4 +17,5 @@ export class RegisterController {
   async findAll(): Promise<User[]> {
     return this.registerService.findAll();
   }
+  
 }

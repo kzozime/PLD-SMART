@@ -9,14 +9,14 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>){}
 
-  async userConnection(mail: string, passwd: string): Promise<string | undefined> {
+  async userConnection(mail: string, passwd: string): Promise<User| undefined> {
     
     console.log(mail);
     const user = await this.userModel.findOne({email: mail});
     if (user && await bcrypt.compare(passwd, user.password)){
       console.log("user exists and password correct ! ");
       console.log(user);
-      return user._id;
+      return user;
     }else{
       console.log("user does not exist or password incorrect ! ");
       return undefined;
