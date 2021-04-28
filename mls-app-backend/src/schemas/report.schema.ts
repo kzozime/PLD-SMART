@@ -23,4 +23,4 @@ export class Report {
 
 }
 
-export const UserSchema = SchemaFactory.createForClass(Report);
+export const ReportSchema = SchemaFactory.createForClass(Report);

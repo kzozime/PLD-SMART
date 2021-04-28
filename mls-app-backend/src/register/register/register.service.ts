@@ -13,8 +13,7 @@ export class RegisterService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(createUserDto);
-    var id = createdUser._id;
-    createdUser.inviteCode = "MLS-"+id ;
+    createdUser.inviteCode = "MLS-"+createdUser._id ;
     const salt = await bcrypt.genSalt();
     createdUser.password = await bcrypt.hash(createdUser.password, salt);
     return createdUser.save();
