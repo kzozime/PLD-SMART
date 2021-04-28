@@ -19,6 +19,9 @@ export class Report {
   crimeType: string;
 
   @Prop()
+  description: string;
+
+  @Prop()
   date: Date;
 
 }
