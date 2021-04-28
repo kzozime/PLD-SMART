@@ -2,6 +2,18 @@
   <form [formGroup]="subForm">
     <ion-list>
       <ion-item>
+        <ion-label floating>first Name</ion-label>
+        <ion-input type="text" formControlName="firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>last Name</ion-label>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>date of birth</ion-label>
+        <ion-input type="date" formControlName="dateOfBirth"></ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label floating>Adresse mail</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
@@ -13,3 +25,8 @@
     <button ion-button full (click)="onSubmitForm()">Soumettre</button>
   </form>
 </ion-content>
+
+
+
+
+  
