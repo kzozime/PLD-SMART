@@ -26,11 +26,8 @@
     "@nestjs/core": "^7.6.15",
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/platform-express": "^7.6.15",
-<<<<<<< HEAD
     "bcrypt": "^5.0.1",
-=======
     "googleapis": "^72.0.0",
->>>>>>> mailing
     "mongoose": "^5.12.5",
     "nodemailer": "^6.5.0",
     "pug": "^3.0.2",

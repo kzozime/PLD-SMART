@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { MailingService } from './mailing.service';
 
 @Controller('mailing')
@@ -6,9 +6,16 @@ export class MailingController {
 
     constructor(private mailingService: MailingService){}
 
-    @Get()
-    findAll(): any {
-        this.mailingService.sendMail();
-        return 'coucou';
+    @Post()
+    findAll(@Body() mailInfos: Mail): any {
+        this.mailingService.sendMail(mailInfos.subject, mailInfos.email, mailInfos.code, mailInfos.username);
+        return mailInfos.email+" "+mailInfos.code+" "+mailInfos.username;
     }
+}
+
+interface Mail {
+    subject: string,
+    email: string;
+    code: string;
+    username: string;
 }

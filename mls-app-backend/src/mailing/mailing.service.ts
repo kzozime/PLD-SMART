@@ -32,15 +32,16 @@ export class MailingService {
         }
     });
 
-    mailOptions = {
-        from: "ghali.elalaoui.elabdellaoui@gmail.com",
-        to: "oussama553@gmail.com",
-        subject: "Node.js Email with Secure OAuth",
-        generateTextFromHTML: true,
-        html: "<b>test</b>"
-   };
+    mailOptions = {};
 
-    sendMail(): void{
+    sendMail(subject: string, email: string, code: string, username: string): void{
+        this.mailOptions = {
+            from: "ghali.elalaoui.elabdellaoui@gmail.com",
+            to: email.toString(),
+            subject: subject,
+            generateTextFromHTML: true,
+            html: "<h1>Hello "+username.toString()+"</h1><p>Here's you code: "+code.toString()
+       };
         this.smtpTransport.sendMail(this.mailOptions, (error, response) => {
             error ? console.log(error) : console.log(response);
             this.smtpTransport.close();
