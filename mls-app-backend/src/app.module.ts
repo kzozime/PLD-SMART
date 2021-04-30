@@ -8,6 +8,8 @@ import { RegisterModule } from './register/register/register.module';
 import { MapModule } from './map/map/map.module';
 import { MailingService } from './mailing/mailing.service';
 import { MailingController } from './mailing/mailing.controller';
+import { PathfinderService } from './pathfinder/pathfinder.service';
+import { PathfinderController } from './pathfinder/pathfinder.controller';
 
 @Module({
   imports: [AuthModule,
@@ -17,7 +19,7 @@ import { MailingController } from './mailing/mailing.controller';
        'mongodb+srv://admin:PLD-SMART@mls-cluster.6ykob.mongodb.net/MLS-App'
        ,{ useNewUrlParser: true, useCreateIndex: true })],
   
-  controllers: [AppController, MailingController],
-  providers: [AppService, MailingService],
+  controllers: [AppController, MailingController, PathfinderController],
+  providers: [AppService, MailingService, PathfinderService],
 })
 export class AppModule {}
