@@ -9,6 +9,8 @@ import { antPath } from 'leaflet-ant-path';
 })
 export class CenterPage implements OnInit, OnDestroy{
   map: Leaflet.Map;
+  private myPositionLatitude;
+  private myPositionLongitude;
 
   constructor() { }
   ngOnInit() {}
@@ -25,6 +27,9 @@ export class CenterPage implements OnInit, OnDestroy{
 
     //Villeurbanne Marker 
     Leaflet.marker([45.771944, 4.8901709]).addTo(this.map).bindPopup('Villeurbanne').openPopup();
+    //MyPosition
+    this.getLocation();
+
     //Pour afficher un chemin
     /*antPath([[28.644800, 77.216721], [34.1526, 77.5771]],
       { color: '#FF0000', weight: 5, opacity: 0.6 })
@@ -34,6 +39,19 @@ export class CenterPage implements OnInit, OnDestroy{
   /** Remove map when we have multiple map object */
   ngOnDestroy() {
     this.map.remove();
+  }
+  //A tester avec le tel
+  getLocation(): void{
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position)=>{
+          this.myPositionLongitude = position.coords.longitude;
+          this.myPositionLatitude = position.coords.latitude;
+          Leaflet.marker([this.myPositionLatitude, this.myPositionLongitude]).addTo(this.map).bindPopup('Me').openPopup();
+
+        });
+    } else {
+       console.log("No support for geolocation")
+    }
   }
 
   // private initMap(): void{
