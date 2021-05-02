@@ -1,0 +1,25 @@
+$purple : #3908C6;
+$light-grey : #F6F6F6;
+$dark-grey : #A8A8A8;
+
+*{
+    margin:0;
+}
+.gps-ctn{
+    height:100%;
+    width:100%;
+    background: linear-gradient(34deg, $light-grey,white);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    height:200px;
+    width:200px;
+    border-radius:50%;
+    background-color: $purple;
+    color:white;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+    font-size:1.5em;
+}

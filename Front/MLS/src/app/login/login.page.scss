@@ -46,6 +46,14 @@ button{
     outline:inherit;
 }
 
+.btn-wrapper{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .connect-btn{
     width:90vw;
     height:40px;

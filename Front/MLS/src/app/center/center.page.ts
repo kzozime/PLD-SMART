@@ -18,9 +18,7 @@ export class CenterPage implements OnInit, OnDestroy{
 
   leafletMap() {
     this.map = Leaflet.map('mapId').setView([45.771944, 4.8901709], 12);
-    Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'edupala.com © Angular LeafLet Feat Aymen ^^',
-    }).addTo(this.map);
+    Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
 
     /*Leaflet.marker([28.6, 77]).addTo(this.map).bindPopup('Delhi').openPopup();
     Leaflet.marker([34, 77]).addTo(this.map).bindPopup('Leh').openPopup();*/

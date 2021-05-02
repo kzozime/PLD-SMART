@@ -1,0 +1,51 @@
+$purple : #3908C6;
+$light-grey : #F6F6F6;
+$dark-grey : #A8A8A8;
+
+.ctn-img{
+    height:250px;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctn-img img{
+    height:200px;
+    width:200px;
+    border-radius: 50%;
+}
+
+.infos-ctn{
+    display: flex;
+    flex-direction: column;
+    padding:0 30px 30px 30px;
+}
+
+.name-ctn{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-ctn h2{
+    background-color:$purple;
+    color:white;
+    border-radius:10px;
+    padding:5px 15px 5px 15px;
+}
+
+.buttons-ctn{
+    margin-top:20px;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.buttons-ctn button{
+    background-color:$purple;
+    color:white;
+    padding:5px 15px 5px 15px;
+    border-radius:5px;
+    font-size:1.2em;
+}

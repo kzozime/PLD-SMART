@@ -1,0 +1,45 @@
+$purple : #3908C6;
+$light-grey : #F6F6F6;
+$dark-grey : #A8A8A8;
+
+.register-ctn{
+    padding:20px;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+h2{
+    margin-bottom:40px;
+}
+
+.underlined{
+    background-color:$purple;
+    opacity:0.3;
+    height:10px;
+    padding:3px;
+    color:white;
+}
+
+.btn-wrapper{
+    display:flex;
+    justify-content: center;
+    margin-top:40px;
+}
+
+.back-btn{
+    margin:10px 0px 0px 20px;
+    opacity:0.3;
+    cursor:pointer;
+}
+
+button{
+    width:50vw;
+    height:30px;
+    background-color: $purple;
+    color:white;
+    font-weight:500;
+    font-size:1.1em;
+    border-radius:10px;
+}

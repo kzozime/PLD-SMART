@@ -10,19 +10,22 @@
 
   <div class="login-ctn">
     <div class="login-block" [ngClass]="loginCtn ? '' : 'hidden'">
-    <form [formGroup]="logForm">
-      <ion-list>
-        <ion-item>
-          <ion-label floating>Adresse mail</ion-label>
-          <ion-input type="email" formControlName="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Mot de passe</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-      </ion-list>
-      <button ion-button full (click)="onSubmitForm()">Se connecter</button>
-    </form>
+      <h1 (click)="onLoginCtn()" class="cross">X</h1>
+      <form [formGroup]="logForm">
+        <ion-list>
+          <ion-item>
+            <ion-label floating>Adresse mail</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Mot de passe</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div class="btn-wrapper">
+          <button class="connect-btn" (click)="onSubmitForm()" style="margin-top:30px;">Se connecter</button>
+        </div>
+      </form>
     </div>
     <!--
     <div class="login-block" [ngClass]="loginCtn ? '' : 'hidden'">

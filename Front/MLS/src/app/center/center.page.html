@@ -1,24 +1,5 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>center</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<!-- <ion-content padding>
-    <div id="map" class ="map-ctn"></div>
-</ion-content> -->
-
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>
-      Ionic 5 Leaflet Demo with leaflet ant path
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div id="mapId" style="width: 100%; height: 100%">
+  <app-navbar style="position:fixed;bottom:0;left:0;z-index:2000;"></app-navbar>
+  <div id="mapId" style="width: 100%; height: calc(100vh); z-index=1">
   </div>
 </ion-content>
-
-

@@ -1,4 +1,7 @@
-<ion-content padding>
+<ion-content>
+  <h4 class="back-btn" (click)="goBack()">< Retour</h4>
+  <div class="register-ctn">
+  <h2>Bienvenue sur MLS !<br>Inscrivez-vous pour démarrer <span class="underlined">l'aventure</span>.</h2>
   <form [formGroup]="subForm">
     <ion-list>
       <ion-item>
@@ -22,8 +25,11 @@
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
     </ion-list>
-    <button ion-button full (click)="onSubmitForm()">Soumettre</button>
+    <div class="btn-wrapper">
+      <button (click)="onSubmitForm()">S'inscrire</button>
+    </div>
   </form>
+  </div>
 </ion-content>
 
 

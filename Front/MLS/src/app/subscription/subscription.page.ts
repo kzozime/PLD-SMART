@@ -18,6 +18,11 @@ export class SubscriptionPage implements OnInit {
   ngOnInit() {
     this.initForm();
   }
+
+  goBack(){
+    this.router.navigate(['/']);
+  }
+  
   initForm() {
     this.subForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

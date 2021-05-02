@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CenterPageRoutingModule } from './center-routing.module';
+import { ProfilePageRoutingModule } from './profile-routing.module';
 
-import { CenterPage } from './center.page';
+import { ProfilePage } from './profile.page';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 
 @NgModule({
@@ -14,8 +14,8 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    CenterPageRoutingModule
+    ProfilePageRoutingModule
   ],
-  declarations: [CenterPage, NavbarComponent]
+  declarations: [ProfilePage, NavbarComponent]
 })
-export class CenterPageModule {}
+export class ProfilePageModule {}
