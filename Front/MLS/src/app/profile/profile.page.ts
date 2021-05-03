@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 import { StorageService } from '../services/storage-service.service';
 
@@ -10,11 +11,15 @@ import { StorageService } from '../services/storage-service.service';
 export class ProfilePage implements OnInit {
 
   constructor(private storage: StorageService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private route : Router) { }
 
   async ngOnInit() {
     /*const email = await this.storage.get('loggedEmail');
     const user = await this.authService.getUser(email);*/
   }
-
+  onDisconnect(){
+    this.storage.clear();
+    this.route.navigateByUrl('/login');
+  }
 }
