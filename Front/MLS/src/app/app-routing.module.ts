@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -8,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'center',
     pathMatch: 'full'
   },
   {
@@ -21,11 +22,13 @@ const routes: Routes = [
   },
   {
     path: 'tabnav',
-    loadChildren: () => import('./tabnav/tabnav.module').then( m => m.TabnavPageModule)
+    loadChildren: () => import('./tabnav/tabnav.module').then( m => m.TabnavPageModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: 'center',
-    loadChildren: () => import('./center/center.module').then( m => m.CenterPageModule)
+    loadChildren: () => import('./center/center.module').then( m => m.CenterPageModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: 'left',
@@ -34,7 +37,8 @@ const routes: Routes = [
   {
     path: 'right',
     loadChildren: () => import('./right/right.module').then( m => m.RightPageModule)
-  },  {
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },

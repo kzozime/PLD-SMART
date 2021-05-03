@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/services/auth.service';
+import { StorageService } from '../services/storage-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  constructor(private storage: StorageService,
+              private authService: AuthService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    /*const email = await this.storage.get('loggedEmail');
+    const user = await this.authService.getUser(email);*/
   }
 
 }
