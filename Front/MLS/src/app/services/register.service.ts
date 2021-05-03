@@ -8,9 +8,11 @@ import { User } from 'src/app/models/user/user.model';
 export class RegisterService {
 
   constructor(private http : HttpClient) { }
-  register(){
+  register(firstName: string, lastName: string, dateOfBirth: Date,
+     email: string, password: String, inviteCode: string){
     console.log("register service post");
-    this.http.post<User>('http://localhost:3000/auth', {emailUser : 'test@front.com', passwordUser : 'test'})
+    this.http.post<User>('http://localhost:3000/register', {firstName : firstName, lastName: lastName,
+     dateOfBirth: dateOfBirth, email: email, password: password, nbInvitation: 2, inviteCode: inviteCode, verified: false})
             .subscribe(loginResponse => {
 
                 console.log(loginResponse.firstName);

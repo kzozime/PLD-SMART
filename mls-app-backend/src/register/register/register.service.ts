@@ -16,6 +16,7 @@ export class RegisterService {
     createdUser.inviteCode = "MLS-"+createdUser._id ;
     const salt = await bcrypt.genSalt();
     createdUser.password = await bcrypt.hash(createdUser.password, salt);
+    console.log(createdUser);
     return createdUser.save();
   }
 
