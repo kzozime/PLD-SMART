@@ -29,7 +29,8 @@ export class SubscriptionPage implements OnInit {
       password: ['', Validators.required],
       firstName:[],
       lastName:[],
-      dateOfBirth:[]
+      dateOfBirth:[],
+      inviteCode:[]
     });  
   }
 
@@ -37,9 +38,10 @@ export class SubscriptionPage implements OnInit {
     
     const email = this.subForm.get('email').value;
     const password = this.subForm.get('password').value;
-    const firstName = this.subForm.get('password').value;
-    const lastName = this.subForm.get('password').value;
-    const dateOfBirth = this.subForm.get('password').value;
+    const firstName = this.subForm.get('firstName').value;
+    const lastName = this.subForm.get('lastName').value;
+    const dateOfBirth = this.subForm.get('dateOfBirth').value;
+    const inviteCode = this.subForm.get('inviteCode').value;
     
     console.log('utilisateur :'+email+'password'+password);
     this.errorMessage="succès ou pas";
