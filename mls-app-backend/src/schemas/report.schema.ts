@@ -7,11 +7,11 @@ export type ReportDocument = Report & Document;
 export class Report {
   
   @Prop()
-  longitude: number;
-
-  @Prop()
   latitude: number;
 
+  @Prop()
+  longitude: number;
+  
   @Prop()
   idUser: string;
 

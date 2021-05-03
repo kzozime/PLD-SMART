@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { antPath } from 'leaflet-ant-path';
+import { MapService } from 'src/services/map.service';
+import { Report } from '../models/user/report.model';
 
 @Component({
   selector: 'app-center',
@@ -12,26 +14,42 @@ export class CenterPage implements OnInit, OnDestroy{
   private myPositionLatitude;
   private myPositionLongitude;
 
-  constructor() { }
-  ngOnInit() {}
+  constructor( private mapService : MapService) { }
+  ngOnInit() {
+    
+  }
   ionViewDidEnter() { this.leafletMap(); }
+
+
 
   leafletMap() {
     this.map = Leaflet.map('mapId').setView([45.771944, 4.8901709], 12);
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
 
-    /*Leaflet.marker([28.6, 77]).addTo(this.map).bindPopup('Delhi').openPopup();
-    Leaflet.marker([34, 77]).addTo(this.map).bindPopup('Leh').openPopup();*/
-
     //Villeurbanne Marker 
     Leaflet.marker([45.771944, 4.8901709]).addTo(this.map).bindPopup('Villeurbanne').openPopup();
     //MyPosition
     this.getLocation();
+    //Import all reports
+    this.mapService.getAllReports(this.map);
 
     //Pour afficher un chemin
     /*antPath([[28.644800, 77.216721], [34.1526, 77.5771]],
       { color: '#FF0000', weight: 5, opacity: 0.6 })
       .addTo(this.map);*/
+
+      this.map.on('click', <LeafletMouseEvent>(e) => {
+        console.log(e.latlng);
+        const lat = e.latlng.lat;
+        const lng = e.latlng.lng;
+        const idUser = "admin";
+        const crimeType = "populationBD";
+        const description = "populationBD";
+        const date = new Date();
+
+        this.mapService.addReport(lat, lng, idUser, crimeType, description, date);
+
+    });
   }
 
   /** Remove map when we have multiple map object */
@@ -52,21 +70,7 @@ export class CenterPage implements OnInit, OnDestroy{
     }
   }
 
-  // private initMap(): void{
-  //   this.map  = L.map('map').setView([39.8282, -98.5795],13);
-  //    /* center: [39.8282, -98.5795],
-  //     zoom: 3*/
-    
-
-  //   const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  //  {
-  //   maxZoom: 18,
-  //   minZoom: 3,
-  //  }
-  // );
-  //  tiles.addTo(this.map);
-
-  // }
+ 
   
 
 

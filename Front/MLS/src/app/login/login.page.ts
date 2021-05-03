@@ -16,7 +16,6 @@ export class LoginPage implements OnInit {
   isAuth!: boolean;
 
   constructor(private authService : AuthService, private router : Router,
-               private _httpClient: HttpClient,
                private formBuilder : FormBuilder) { 
     this.isAuth = false;
     this.loginCtn = false;

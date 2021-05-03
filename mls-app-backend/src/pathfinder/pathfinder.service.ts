@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { PathFinder } from 'geojson-path-finder';
-import * as network from './export.json'
+/*import { PathFinder } from 'geojson-path-finder';
+import * as network from 'export'*/
 
 @Injectable()
 export class PathfinderService {
-    pathFinder = new PathFinder(network);
+    pathFinder = 0 //new PathFinder(network);
     start = {
         "type": "Feature",
         "geometry": {
@@ -22,7 +22,7 @@ export class PathfinderService {
     };
 
     findPath(): any{
-        return this.pathFinder.findPath(this.start, this.finish);
+        //return this.pathFinder.findPath(this.start, this.finish);
     }
 }
 
