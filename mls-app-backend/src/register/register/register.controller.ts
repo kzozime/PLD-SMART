@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Header, Post } from '@nestjs/common';
 import { CreateUserDto } from 'src/dto/create-user.dto';
 import { User } from 'src/schemas/user.schema';
 import { RegisterService } from './register.service';
@@ -9,8 +9,9 @@ export class RegisterController {
   constructor(private readonly registerService: RegisterService) {}
 
   @Post()
+  @Header('Access-Control-Allow-Origin', '*')
   async create(@Body() createUserDto: CreateUserDto) {
-    await this.registerService.create(createUserDto);
+    return await this.registerService.create(createUserDto);
   }
 
   @Get()
