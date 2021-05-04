@@ -82,9 +82,7 @@ export class CenterPage implements OnInit, OnDestroy{
         this.latitude = resp.coords.latitude;
         this.longitude = resp.coords.longitude;
         console.log("position geolocation : lat= "+this.latitude+" longi= "+this.longitude);
-        this.map.setView([this.latitude,this.longitude],20)
-        Leaflet.marker([this.latitude, this.longitude]).addTo(this.map).bindPopup('Me').openPopup();
-
+        this.map.setView([this.latitude,this.longitude],20);
       }).catch(
       async (error) => {
         

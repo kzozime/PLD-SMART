@@ -11,9 +11,10 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { PopSignalComponent } from 'src/component/pop-signal/pop-signal.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,PopSignalComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 
