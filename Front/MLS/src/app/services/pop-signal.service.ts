@@ -5,5 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class PopSignalService {
   displayPop !: boolean;
-  constructor() { }
+  constructor() { 
+    this.displayPop = false;
+  }
 }

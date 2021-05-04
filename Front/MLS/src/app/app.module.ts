@@ -16,7 +16,7 @@ import { PopSignalComponent } from 'src/component/pop-signal/pop-signal.componen
 @NgModule({
   declarations: [
                   AppComponent,
-                  PopSignalComponent
+                  
                 ],
   entryComponents: [],
   imports: [
@@ -26,7 +26,7 @@ import { PopSignalComponent } from 'src/component/pop-signal/pop-signal.componen
     HttpClientModule,
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
-    FormsModule
+    FormsModule,
   ],
   providers: [
               FormBuilder,

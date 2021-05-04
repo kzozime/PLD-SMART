@@ -1,4 +1,4 @@
-<div [ngClass]="popSignal ? '' : 'hidden'" class="wrapper-popUp">
+<div [ngClass]="popSignal.displayPop ? '' : 'hidden'" class="wrapper-popUp"> <!--[ngClass]="displayPop ? '' : 'hidden'"-->
   <div class="popUp-back">
     <div class="popUp-ctn">
       <h1 (click)="closePopUpSignal()">X</h1>

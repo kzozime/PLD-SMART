@@ -8,7 +8,6 @@ import { PopSignalService } from 'src/app/services/pop-signal.service';
 })
 export class PopSignalComponent implements OnInit {
 
- 
   constructor( private popSignal:PopSignalService) {
    
   }
@@ -16,6 +15,6 @@ export class PopSignalComponent implements OnInit {
   ngOnInit() {}
 
   closePopUpSignal(){
-    
+    this.popSignal.displayPop = false;
   }
 }
