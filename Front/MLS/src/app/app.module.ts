@@ -14,7 +14,10 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { PopSignalComponent } from 'src/component/pop-signal/pop-signal.component';
 
 @NgModule({
-  declarations: [AppComponent,PopSignalComponent],
+  declarations: [
+                  AppComponent,
+                  PopSignalComponent
+                ],
   entryComponents: [],
   imports: [
     BrowserModule, 

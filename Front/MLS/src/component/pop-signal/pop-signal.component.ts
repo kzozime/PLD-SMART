@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PopSignalService } from 'src/app/services/pop-signal.service';
 
 @Component({
   selector: 'app-pop-signal',
@@ -7,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopSignalComponent implements OnInit {
 
-  popSignal!: boolean;
-  constructor() {
-    this.popSignal = false;
+ 
+  constructor( private popSignal:PopSignalService) {
+   
   }
 
   ngOnInit() {}
 
   closePopUpSignal(){
-    this.popSignal = false;
+    
   }
 }

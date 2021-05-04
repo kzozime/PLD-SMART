@@ -4,6 +4,7 @@ import { antPath } from 'leaflet-ant-path';
 import { MapService } from 'src/services/map.service';
 import { Report } from '../models/user/report.model';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { PopSignalService } from '../services/pop-signal.service';
 
 
 
@@ -21,7 +22,8 @@ export class CenterPage implements OnInit, OnDestroy{
   longitude: number;
 
   constructor( private mapService : MapService,
-                private geolocation: Geolocation) { }
+                private geolocation: Geolocation,
+                private popSignal:PopSignalService) { }
   ngOnInit() {
     
   }
@@ -88,6 +90,9 @@ export class CenterPage implements OnInit, OnDestroy{
         
       }
     );
+  }
+  onReport(){
+    this.popSignal.displayPop = true;
   }
 
  
