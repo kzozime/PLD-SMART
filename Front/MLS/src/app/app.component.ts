@@ -9,7 +9,7 @@ import { StorageService } from './services/storage-service.service';
 export class AppComponent implements OnDestroy {
   constructor(private storage: StorageService){}
 
-   ngOnDestroy(){
-   this.storage.clear();
+  ngOnDestroy(){
+   //this.storage.clear();
   }
 }

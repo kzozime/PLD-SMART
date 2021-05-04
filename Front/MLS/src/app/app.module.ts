@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,10 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     IonicStorageModule.forRoot(),
     FormsModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy},FormBuilder],
+  providers: [
+              FormBuilder,
+              Geolocation,
+              { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

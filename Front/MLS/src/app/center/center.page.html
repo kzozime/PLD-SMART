@@ -1,6 +1,8 @@
 <ion-content>
+    <button (click)="onLocateMe()" style="position:fixed; z-index:3000; right:10px; bottom:140px; height:60px; width:60px;background-color:rgba(0,0,0,0.5);border-radius:50%;">
+      <ion-icon name="locate" style="width:25px;height:25px;color:white;"></ion-icon>
+    </button>
   <app-navbar style="position:fixed;bottom:0;left:0;z-index:2000;"></app-navbar>
-  <div id="mapId" style="width: 100%; height: calc(100vh); z-index:1">
-  </div>
+  <div id="mapId" style="width: 100%; height: calc(100vh); z-index:1"></div>
 </ion-content>
 
