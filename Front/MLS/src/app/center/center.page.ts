@@ -3,6 +3,10 @@ import * as Leaflet from 'leaflet';
 import { antPath } from 'leaflet-ant-path';
 import { MapService } from 'src/services/map.service';
 import { Report } from '../models/user/report.model';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { PopSignalService } from '../services/pop-signal.service';
+
+
 
 @Component({
   selector: 'app-center',
@@ -14,7 +18,12 @@ export class CenterPage implements OnInit, OnDestroy{
   private myPositionLatitude;
   private myPositionLongitude;
 
-  constructor( private mapService : MapService) { }
+  latitude: number;
+  longitude: number;
+
+  constructor( private mapService : MapService,
+                private geolocation: Geolocation,
+                private popSignal:PopSignalService) { }
   ngOnInit() {
     
   }
@@ -68,6 +77,22 @@ export class CenterPage implements OnInit, OnDestroy{
     } else {
        console.log("No support for geolocation")
     }
+  }
+  async onLocateMe() {
+    this.geolocation.getCurrentPosition().then(
+      async (resp) => {
+        this.latitude = resp.coords.latitude;
+        this.longitude = resp.coords.longitude;
+        console.log("position geolocation : lat= "+this.latitude+" longi= "+this.longitude);
+        this.map.setView([this.latitude,this.longitude],20);
+      }).catch(
+      async (error) => {
+        
+      }
+    );
+  }
+  onReport(){
+    this.popSignal.displayPop = true;
   }
 
  

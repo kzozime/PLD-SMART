@@ -1,0 +1,17 @@
+<div [ngClass]="popSignal ? '' : 'hidden'" class="wrapper-popUp">
+  <div class="popUp-back">
+    <div class="popUp-ctn">
+      <h1 (click)="closePopUpSignal()">X</h1>
+      <h3>Précisez votre signalement</h3>
+      <form>
+        <select>
+          <option value="">Vol</option>
+          <option value="">Agression</option>
+          <option value="">Harcèlement</option>
+        </select>
+        <input type="text" maxlength="100">
+        <button>OK</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'app-subscription',
@@ -13,7 +14,7 @@ export class SubscriptionPage implements OnInit {
   errorMessage !: string;
 
   constructor(private formBuilder : FormBuilder,
-              private router : Router) { }
+              private router : Router, private registerService: RegisterService) { }
 
   ngOnInit() {
     this.initForm();
@@ -29,17 +30,21 @@ export class SubscriptionPage implements OnInit {
       password: ['', Validators.required],
       firstName:[],
       lastName:[],
-      dateOfBirth:[]
+      dateOfBirth:[],
+      inviteCode:[]
     });  
   }
 
-  onSubmitForm() {
+  async onSubmitForm() {
     
     const email = this.subForm.get('email').value;
     const password = this.subForm.get('password').value;
-    const firstName = this.subForm.get('password').value;
-    const lastName = this.subForm.get('password').value;
-    const dateOfBirth = this.subForm.get('password').value;
+    const firstName = this.subForm.get('firstName').value;
+    const lastName = this.subForm.get('lastName').value;
+    const dateOfBirth = this.subForm.get('dateOfBirth').value;
+    const inviteCode = this.subForm.get('inviteCode').value;
+
+    await this.registerService.register(firstName, lastName, dateOfBirth, email, password, inviteCode);
     
     console.log('utilisateur :'+email+'password'+password);
     this.errorMessage="succès ou pas";
