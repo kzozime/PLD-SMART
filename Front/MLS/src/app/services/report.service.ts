@@ -18,6 +18,6 @@ export class ReportService {
     date:Date,
     userId:string
     ):Observable<Report>{
-      return this.http.post<Report>('http://localhost:3000/report', {latitude : latitude, longitude : longitude, idUser : userId, crimeType : typeSignal, description : descriptionSignal, date : date});
+      return this.http.post<Report>('http://localhost:3000/map/report', {latitude : latitude, longitude : longitude, idUser : userId, crimeType : typeSignal, description : descriptionSignal, date : date});
   }
 }

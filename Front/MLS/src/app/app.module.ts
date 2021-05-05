@@ -16,7 +16,7 @@ import { PopSignalComponent } from '../component/pop-signal/pop-signal.component
 @NgModule({
   declarations: [
                   AppComponent,
-                  PopSignalComponent
+                  
                   
                 ],
   entryComponents: [],

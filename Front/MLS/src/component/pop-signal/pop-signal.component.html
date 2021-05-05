@@ -5,9 +5,9 @@
       <h3>Précisez votre signalement</h3>
       <form [formGroup]="signalForm">
         <select formControlName="typeSignal">
-          <option value="">Vol</option>
-          <option value="">Agression</option>
-          <option value="">Harcèlement</option>
+          <option value="Vol">Vol</option>
+          <option value="Agression">Agression</option>
+          <option value="Harcèlement">Harcèlement</option>
         </select>
         <input type="text" maxlength="100" formControlName="descriptionSignal">
         <button (click)="onSubmitForm()">OK</button>

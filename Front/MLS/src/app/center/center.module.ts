@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,21 +8,21 @@ import { CenterPageRoutingModule } from './center-routing.module';
 
 import { CenterPage } from './center.page';
 import { NavbarComponent } from '../components/navbar/navbar.component';
-import { AppModule } from '../app.module';
+import { PopSignalComponent } from 'src/component/pop-signal/pop-signal.component';
 
 @NgModule({
   imports: [
-    AppModule,
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     CenterPageRoutingModule
     
 
     
     
   ],
-  declarations: [CenterPage, NavbarComponent],
+  declarations: [CenterPage, NavbarComponent,PopSignalComponent],
   exports:[
     
   ]
