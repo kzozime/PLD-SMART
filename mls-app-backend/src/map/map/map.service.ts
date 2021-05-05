@@ -12,7 +12,6 @@ export class MapService {
 
     async reportCrime(createReportDto: CreateReportDto): Promise<Report> {
         const createdReport = new this.reportModel(createReportDto); 
-        createdReport.date = new Date();       
         return createdReport.save();
       }
 

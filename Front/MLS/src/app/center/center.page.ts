@@ -8,6 +8,7 @@ import { PopSignalService } from '../services/pop-signal.service';
 
 
 
+
 @Component({
   selector: 'app-center',
   templateUrl: './center.page.html',

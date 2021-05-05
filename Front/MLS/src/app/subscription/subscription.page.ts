@@ -44,7 +44,11 @@ export class SubscriptionPage implements OnInit {
     const dateOfBirth = this.subForm.get('dateOfBirth').value;
     const inviteCode = this.subForm.get('inviteCode').value;
 
-    await this.registerService.register(firstName, lastName, dateOfBirth, email, password, inviteCode);
+    await this.registerService.register(firstName, lastName, dateOfBirth, email, password, inviteCode).subscribe(loginResponse => {
+
+      console.log(loginResponse.firstName);
+
+  });
     
     console.log('utilisateur :'+email+'password'+password);
     this.errorMessage="succès ou pas";
