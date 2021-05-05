@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   }
 
   onConnect(){
-    this.authService.login();
+    //this.authService.login();
     this.router.navigateByUrl('/tabnav');
 
   }
@@ -51,6 +51,7 @@ export class LoginPage implements OnInit {
     const email = this.logForm.get('email').value;
     const password = this.logForm.get('password').value;
     
+    this.authService.login(email, password);
     console.log('utilisateur :'+email+'password'+password);
     this.router.navigateByUrl('/tabnav');
 

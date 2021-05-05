@@ -16,6 +16,7 @@ export class AuthController {
 
   @Post()
   @Header('Access-Control-Allow-Origin', '*')
+  @Header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
   async login(
     @Body('emailUser') emailUser: string,
     @Body('passwordUser') passwordUser: string,
@@ -23,6 +24,7 @@ export class AuthController {
     
   ): Promise<string> {
     
+    console.log(emailUser, passwordUser);
     const user = await this.authService.userConnection(emailUser, passwordUser);
 
     if(!user) {

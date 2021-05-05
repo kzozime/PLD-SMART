@@ -11,14 +11,14 @@ export class AuthService {
 
   constructor(private http : HttpClient) { }
 
-  login(){
+  login(email: string, password: string){
     console.log("service post");
-    this.http.post<User>('http://localhost:3000/auth', {emailUser : 'test@front.com', passwordUser : 'test'})
+    // this.http.post<User>('http://localhost:3000/auth', {emailUser : 'test@front.com', passwordUser : 'test'})
+    this.http.post<User>('https://mon-lyon-sur.herokuapp.com/auth', {emailUser: email, passwordUser: password})
             .subscribe(loginResponse => {
 
                 console.log(loginResponse.firstName);
 
             });
   }
-
 }
