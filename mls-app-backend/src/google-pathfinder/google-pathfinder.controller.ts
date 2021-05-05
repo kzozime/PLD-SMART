@@ -1,4 +1,5 @@
-import { BadRequestException, Body, Controller, Get, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, UnauthorizedException } from '@nestjs/common';
+import { CreatePointDto } from 'src/dto/create-point.dto';
 import { GooglePathfinderService } from 'src/google-pathfinder/google-pathfinder.service';
 
 @Controller('googlepathfinder')
@@ -17,13 +18,34 @@ export class GooglePathfinderController {
     }
 
     @Post()
-    async pathfinder(@Body("startLat") startLat:String, @Body("startLong") startLong:String, @Body("endLat")endLat:String, @Body("endLong")endLong:String): Promise<any> {
-        const path = await this.googlePathFinder.findPath2(startLat, startLong, endLat, endLong);
+    async pathfinder(@Body() points:CreatePointDto[]): Promise<any> {
 
-        if(!path) {
-            throw new BadRequestException('coordonnées non-valides');
+        var tab: String[] = [];
+        var jsonToString = JSON.stringify(points);
+        var objectValue = JSON.parse(jsonToString);
+        let index = 0;
+        console.log("debut du post");
+        try {
+
+            tab.push(objectValue["points"][0]);
+
+            while (objectValue["points"][index + 1] !== undefined) {
+                console.log(index);
+                const path = await this.googlePathFinder.findPath2(objectValue["points"][index], objectValue["points"][index + 1]);
+                tab = tab.concat( this.googlePathFinder.getCoordinatesList(path.data) );
+                index ++;
+                if(!path) {
+                    throw new BadRequestException('coordonnées non-valides');
+                }
+            }
+            console.table(tab);
+            return tab;
+
+        } catch (error) {
+            throw new UnauthorizedException();
         }
+       
 
-        return this.googlePathFinder.getCoordinatesList(path.data);
+        
     }
 }
