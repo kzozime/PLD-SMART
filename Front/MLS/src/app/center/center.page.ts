@@ -19,7 +19,6 @@ export class CenterPage implements OnInit, OnDestroy{
   map: Leaflet.Map;
   private myPositionLatitude;
   private myPositionLongitude;
-
   latitude: number;
   longitude: number;
 
