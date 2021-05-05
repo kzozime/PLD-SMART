@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -15,10 +15,14 @@ import { PopSignalComponent } from 'src/component/pop-signal/pop-signal.componen
     CommonModule,
     FormsModule,
     IonicModule,
-    CenterPageRoutingModule,
+    ReactiveFormsModule,
+    CenterPageRoutingModule
+    
+
+    
     
   ],
-  declarations: [CenterPage, NavbarComponent, PopSignalComponent],
+  declarations: [CenterPage, NavbarComponent,PopSignalComponent],
   exports:[
     
   ]

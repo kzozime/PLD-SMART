@@ -52,7 +52,14 @@ export class LoginPage implements OnInit {
     
     const email = this.logForm.get('email').value;
     const password = this.logForm.get('password').value;
-    this.authService.login(email, password);
+    this.authService.login(email, password).subscribe(loginResponse => {
+
+      console.log('response login : '+loginResponse.email);
+      this.storage.set('userId',loginResponse['_id']);
+      this.storage.set('isAuth', true);
+      this.storage.set("loggedUser", loginResponse);
+
+  });
     console.log('utilisateur :'+email+'password'+password);
     this.router.navigateByUrl('/tabnav');
 

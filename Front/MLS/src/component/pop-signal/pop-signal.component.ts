@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { PopSignalService } from 'src/app/services/pop-signal.service';
+import { ReportService } from 'src/app/services/report.service';
+import { StorageService } from 'src/app/services/storage-service.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-pop-signal',
@@ -8,11 +12,52 @@ import { PopSignalService } from 'src/app/services/pop-signal.service';
 })
 export class PopSignalComponent implements OnInit {
 
-  constructor( private popSignal:PopSignalService) {
+  signalForm:FormGroup;
+
+  constructor( 
+    private popSignal:PopSignalService,
+    private formBuilder : FormBuilder,
+    private reportService:ReportService,
+    private storage:StorageService,
+    private geolocation:Geolocation
+    ) {
    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm(){
+    this.signalForm = this.formBuilder.group({
+      typeSignal:[],
+      descriptionSignal:[]
+    });
+  }
+
+  async onSubmitForm(){
+    const typeSignal = this.signalForm.get('typeSignal').value;
+    const descriptionSignal = this.signalForm.get('descriptionSignal').value;
+    const userId = await this.storage.get('userId');
+    console.log('id: '+userId);
+    let latitude : number;
+    let longitude : number;
+    this.geolocation.getCurrentPosition().then(
+       (resp) => {
+        longitude = resp.coords.longitude;
+        latitude = resp.coords.latitude;
+        const date = new Date();
+        this.reportService.report(typeSignal, descriptionSignal, longitude, latitude, date, userId).subscribe(reportResponse => {
+          console.log(reportResponse.idUser);
+        })
+      }
+    )
+   
+
+   
+  }
+
+
 
   closePopUpSignal(){
     this.popSignal.displayPop = false;
