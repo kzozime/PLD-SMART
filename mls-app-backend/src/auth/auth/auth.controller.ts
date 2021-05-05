@@ -22,7 +22,7 @@ export class AuthController {
     @Body('passwordUser') passwordUser: string,
     @Res({passthrough: true}) response: Response
     
-  ): Promise<string> {
+  ): Promise<User> {
     
     console.log(emailUser, passwordUser);
     const user = await this.authService.userConnection(emailUser, passwordUser);
@@ -35,7 +35,7 @@ export class AuthController {
 
     response.cookie('jwt', jwt, {httpOnly : true});
 
-    return "succes";
+    return user;
   }
 
   @Get()
