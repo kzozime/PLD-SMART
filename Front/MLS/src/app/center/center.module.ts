@@ -8,17 +8,21 @@ import { CenterPageRoutingModule } from './center-routing.module';
 
 import { CenterPage } from './center.page';
 import { NavbarComponent } from '../components/navbar/navbar.component';
-import { PopSignalComponent } from 'src/component/pop-signal/pop-signal.component';
+import { AppModule } from '../app.module';
 
 @NgModule({
   imports: [
+    AppModule,
     CommonModule,
     FormsModule,
     IonicModule,
-    CenterPageRoutingModule,
+    CenterPageRoutingModule
+    
+
+    
     
   ],
-  declarations: [CenterPage, NavbarComponent, PopSignalComponent],
+  declarations: [CenterPage, NavbarComponent],
   exports:[
     
   ]
