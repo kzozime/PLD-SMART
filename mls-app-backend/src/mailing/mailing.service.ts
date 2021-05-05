@@ -35,6 +35,7 @@ export class MailingService {
     mailOptions = {};
 
     sendMail(subject: string, email: string, code: string, username: string): void{
+        console.log(subject, email,code,username);
         this.mailOptions = {
             from: "ghali.elalaoui.elabdellaoui@gmail.com",
             to: email.toString(),
