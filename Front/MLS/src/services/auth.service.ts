@@ -15,17 +15,13 @@ export class AuthService {
   login(email:string,password:string){
     //console.log("isauth authservice:"+this.storage.get('isauth'))
     console.log("service post");
-    this.http.post<User>('http://localhost:3000/auth', {emailUser : email, passwordUser : password})
+    this.http.post<User>('http://mon-lyon-sur.herokuapp.com/auth', {emailUser : email, passwordUser : password})
             .subscribe(loginResponse => {
 
                 console.log('response login : '+loginResponse.email);
                 this.storage.set('isAuth', true);
                 this.storage.set("loggedUser", loginResponse);
 
-            });
+    });
   }
-
- 
-
-
 }
