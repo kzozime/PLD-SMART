@@ -20,7 +20,7 @@ import { PopSignalComponent } from 'src/component/pop-signal/pop-signal.componen
   ],
   declarations: [CenterPage, NavbarComponent, PopSignalComponent],
   exports:[
-    
+    CenterPage
   ]
 })
 export class CenterPageModule {}

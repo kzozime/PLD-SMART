@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Report } from 'src/app/models/user/report.model';
 import * as Leaflet from 'leaflet';
+import { Observable } from 'rxjs';
+import { Point, Points } from 'src/app/models/point.model';
+import 'leaflet-routing-machine';
 @Injectable({
   providedIn: 'root'
 })
@@ -48,5 +51,19 @@ export class MapService {
     });
     
   }
+
+   getAllReports2(): Observable<Report[]> {
+ 
+
+    return this.http.get<Report[]>('http://localhost:3000/map/report');
+
+}
+  getPath(pointTab: Point[]) {
+
+  return this.http.get('https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf6248705a95d4af6f413eb6e123dcf8c607b7&start='+
+  pointTab[0].lng+','+pointTab[0].lat+'&end='+pointTab[1].lng+','+pointTab[0].lat)
+  
+
+}
 
 }

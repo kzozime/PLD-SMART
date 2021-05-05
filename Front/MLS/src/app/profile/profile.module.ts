@@ -8,6 +8,7 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 import { NavbarComponent } from '../components/navbar/navbar.component';
+import { CenterPage } from '../center/center.page';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
     IonicModule,
     ProfilePageRoutingModule
   ],
-  declarations: [ProfilePage, NavbarComponent]
+  declarations: [ProfilePage, NavbarComponent],
+  providers :[CenterPage]
 })
 export class ProfilePageModule {}
