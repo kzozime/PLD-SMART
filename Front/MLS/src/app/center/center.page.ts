@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit, ɵgetDebugNode__POST_R3__ } from '@angular/core';
 import * as Leaflet from 'leaflet';
-import { antPath } from 'leaflet-ant-path';
 import { MapService } from 'src/app/services/map.service';
-import { Report } from '../models/user/report.model';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { PopSignalService } from '../services/pop-signal.service';
 import * as L from 'leaflet';
@@ -10,24 +8,42 @@ import 'leaflet.heat';
 import 'leaflet-routing-machine';
 import { Point } from '../models/point.model';
 import 'geoportal-extensions-leaflet';
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
+
+
 @Component({
   selector: 'app-center',
   templateUrl: './center.page.html',
   styleUrls: ['./center.page.scss'],
 })
+
 export class CenterPage implements OnInit, OnDestroy {
   map: Leaflet.Map;
   latitude: number;
   longitude: number;
   heatM: Leaflet.HeatLayer;
   markerTab: Leaflet.Marker[];
+  myPositionMarker: Leaflet.Marker;
+  myPath: Leaflet.GeoJSON;
 
   constructor(private mapService: MapService,
     private geolocation: Geolocation,
-    private popSignal: PopSignalService) { }
-  ngOnInit() {
-
-  }
+    private popSignal: PopSignalService) { 
+      this.myPath = null;
+    }
+    ngOnInit() {
+      // Define interval[ms]
+          const intervalMs = 1000;
+  
+      // Create a subscripton to the observable, so the observable is cancelable.
+      // The created observable is directly subscribed and the subscription saved.
+      console.log("alert");
+      let accelerationSensorSubscription = IntervalObservable.create(intervalMs)
+          .subscribe(() => {
+              this.onLocateMe();
+          });
+  
+    }
   ionViewDidEnter() { this.leafletMap(); }
 
 
@@ -41,21 +57,7 @@ export class CenterPage implements OnInit, OnDestroy {
     this.onLocateMe();
     //this.drawPath();
 
-    this.map.on('click', <LeafletMouseEvent>(e) => {
-      console.log(e.latlng);
-      const lat = e.latlng.lat;
-      const lng = e.latlng.lng;
-      const idUser = "admin";
-      const crimeType = "Vol";
-      const description = "populationBD";
-      const date = new Date();
 
-      //this.mapService.addReport(lat, lng, idUser, crimeType, description, date);
-      //this.mapService.getAllReports(this.map);
-      //this.drawPath(lat, lng);
-
-
-    });
   }
 
   /** Remove map when we have multiple map object */
@@ -77,8 +79,12 @@ export class CenterPage implements OnInit, OnDestroy {
         this.latitude = resp.coords.latitude;
         this.longitude = resp.coords.longitude;
         console.log("position geolocation : lat= " + this.latitude + " longi= " + this.longitude);
-        this.map.setView([this.latitude, this.longitude], 20);
-        Leaflet.marker([this.latitude, this.longitude],{ icon: blueIcon }).addTo(this.map).bindPopup('Me').openPopup();
+        this.map.setView([this.latitude, this.longitude]);
+        if (this.myPositionMarker) {
+          this.myPositionMarker.remove();
+          this.myPositionMarker = null;
+        }
+        this.myPositionMarker = Leaflet.marker([this.latitude, this.longitude], { icon: blueIcon }).addTo(this.map).bindPopup('Me').openPopup();
         this.mapService.getClosestReport(this.latitude, this.longitude, this.map);
 
       }).catch(
@@ -94,18 +100,33 @@ export class CenterPage implements OnInit, OnDestroy {
     this.map = null;
   }
 
-  drawPath(lat: number, lng: number) {
-    const p1 = new Point(45.77889767785222, 4.8667287826538095);
-    console.log('p1:' + 4.8667287826538095 + ',' + 45.77889767785222);
-    const p2 = new Point(lat, lng);
-    console.log('p2:' + lng + ',' + lat);
-    const tab = [];
-    tab.push(p1);
-    tab.push(p2);
-    this.mapService.getPath(tab).subscribe(res => {
-      var layer = L.geoJSON(JSON.parse(JSON.stringify(res))).addTo(this.map);
+  async drawPath() {
+    var pathState = true;
+    if(this.myPath){
+      this.myPath.remove();
+    }
+    
+    await this.onLocateMe();
+    console.log("Veuillez indiquer votre destination.");
+    this.map.on('click', <LeafletMouseEvent>(e) => {
+      if (pathState) {
+        const lat = e.latlng.lat;
+        const lng = e.latlng.lng;
+        const p1 = new Point(this.latitude, this.longitude);
+        const p2 = new Point(lat, lng);
+        const tab = [];
+        tab.push(p1);
+        tab.push(p2);
+        this.mapService.getPath(tab).subscribe(res => {
+          var p = L.geoJSON(JSON.parse(JSON.stringify(res)))
+          p.addTo(this.map);
+          this.myPath = p;
+          pathState = false;
 
+        });
+      }
     });
+
   }
 
   async heatMap() {
@@ -137,7 +158,7 @@ export class CenterPage implements OnInit, OnDestroy {
 
   }
 
-  displayReports(){
+  displayReports() {
     var redIcon = new Leaflet.Icon({
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
       shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -146,26 +167,26 @@ export class CenterPage implements OnInit, OnDestroy {
       popupAnchor: [1, -34],
       shadowSize: [41, 41]
     });
-    if(this.markerTab.length > 0){
+    if (this.markerTab.length > 0) {
       this.markerTab.forEach(e => {
         e.remove();
       });
-      this.markerTab=[];
-    }else{
+      this.markerTab = [];
+    } else {
       this.mapService.getAllReports2()
-    .subscribe(reportResponse => {
+        .subscribe(reportResponse => {
 
-      reportResponse.forEach(element => {
-        var marker = Leaflet.marker([element.latitude, element.longitude], { icon: redIcon });
-        marker
-          .bindPopup("type:" + element.crimeType + "\n date:" + element.date)
-          .addTo(this.map);
-          console.log("test marker : "+element.idUser);
-          this.markerTab.push(marker);
-      });
-    });
+          reportResponse.forEach(element => {
+            var marker = Leaflet.marker([element.latitude, element.longitude], { icon: redIcon });
+            marker
+              .bindPopup("type:" + element.crimeType + "\n date:" + element.date)
+              .addTo(this.map);
+            console.log("test marker : " + element.idUser);
+            this.markerTab.push(marker);
+          });
+        });
     }
-    
+
   }
 }
 

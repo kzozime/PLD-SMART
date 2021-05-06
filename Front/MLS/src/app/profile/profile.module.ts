@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
@@ -18,6 +18,6 @@ import { CenterPage } from '../center/center.page';
     ProfilePageRoutingModule
   ],
   declarations: [ProfilePage, NavbarComponent],
-  providers :[CenterPage]
+  providers :[CenterPage, DatePipe]
 })
 export class ProfilePageModule {}

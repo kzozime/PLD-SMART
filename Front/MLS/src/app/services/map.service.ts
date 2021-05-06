@@ -27,7 +27,7 @@ export class MapService {
 
     this.http.post<Report>('https://mon-lyon-sur.herokuapp.com/map/report', report)
       .subscribe(reportResponse => {
-        console.log(reportResponse);
+        //console.log(reportResponse);
       });
   }
 
@@ -71,7 +71,7 @@ export class MapService {
 
   getClosestReport(lat: number, lng: number, map: Leaflet.Map){
     var now = Date.now().valueOf();
-    console.log('now :'+now);
+    //console.log('now :'+now);
     const reports = this.getAllReports2();
     var myPositiosMarker = Leaflet.circleMarker([lat, lng]);
     var from = myPositiosMarker.getLatLng();
@@ -81,20 +81,21 @@ export class MapService {
         var to = Leaflet.circleMarker([element.latitude,element.longitude]).getLatLng();
         var d = from.distanceTo(to); 
         var reportTime = new Date(element.date).valueOf();
-        console.log("distance : " + d +" m avec i = "+i++);
+        //console.log("distance : " + d +" m avec i = "+i++);
         var t = now-reportTime;
-        console.log(" time diff : " + reportTime);
+        //console.log(" time diff : " + reportTime);
         if(d <= 100 && now-reportTime < 3600000){
-          Leaflet.marker([element.latitude, element.longitude])
+          /*Leaflet.marker([element.latitude, element.longitude])
           .bindPopup("type:" + element.crimeType + "\n date:" + element.date + "ATTENTION !!!")
           .openPopup()
-          .addTo(map);
+          .addTo(map);*/
           //notification push
           this.localNotifications.schedule({
             text: 'Attention des incidents ont été signalé près de votre position !',
             trigger: {at: new Date(new Date().getTime() + 7000)},
             led: { color: '#FF00FF', on: 500, off: 500 },
-            vibrate: false,
+            vibrate: true,
+            foreground: true,
             sound: null
           });
         }

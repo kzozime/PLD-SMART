@@ -59,6 +59,12 @@ export class LoginPage implements OnInit {
       this.storage.set('isAuth', true);
       this.storage.set("loggedUser", loginResponse);
 
+      this.storage.set('lastName',loginResponse.lastName);
+      this.storage.set('firstName',loginResponse.firstName);
+      this.storage.set('dateOfBirth',loginResponse.dateOfBirth);
+      this.storage.set('email',loginResponse.email);
+      this.storage.set('nbInvit',loginResponse.nbInvitation);
+
   });
     console.log('utilisateur :'+email+'password'+password);
     this.router.navigateByUrl('/tabnav');

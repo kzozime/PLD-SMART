@@ -5,6 +5,7 @@ import { StorageService } from '../services/storage-service.service';
 import { CenterPage } from 'src/app/center/center.page'
 import { HttpClient } from '@angular/common/http';
 import { Mail } from 'src/app/models/user/mail.model';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -12,15 +13,30 @@ import { Mail } from 'src/app/models/user/mail.model';
 })
 export class ProfilePage implements OnInit {
 
+  firstName !: string;
+  lastName !: string;
+  dateOfBirth !: Date;
+  dateBirth !: string;
+  nbInvit !: number;
+  email !: string;
+
   constructor(private storage: StorageService,
               private authService: AuthService,
               private route : Router,
               private centerMap: CenterPage,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              public datepipe : DatePipe
+              ) { }
 
   async ngOnInit() {
     /*const email = await this.storage.get('loggedEmail');
     const user = await this.authService.getUser(email);*/
+    this.email = await this.storage.get('email');
+    this.firstName = await this.storage.get('firstName');
+    this.lastName = await this.storage.get('lastName');
+    this.dateOfBirth = await this.storage.get('dateOfBirth');
+    this.dateBirth = this.datepipe.transform(this.dateOfBirth,'dd/MM/yyyy');
+    this.nbInvit = await this.storage.get('nbInvit');
   }
   onDisconnect(){
     this.storage.clear();
@@ -28,8 +44,8 @@ export class ProfilePage implements OnInit {
     this.route.navigateByUrl('/login');
   }
   inviteFriend() {
-    const mailInfos = new Mail('IInvitation à rejoindre MonLyonSur', 'oussama553@gmail.com', 'urlde telechargment', 'admin');
-    return this.http.post('http://localhost:3000/mailing', mailInfos).subscribe(reponse => console.log(reponse));
+    const mailInfos = new Mail('Invitation à rejoindre MonLyonSur', 'oussama553@gmail.com', 'urlde telechargment', 'admin');
+    return this.http.post('https://mon-lyon-sur.herokuapp.com/mailing', mailInfos).subscribe(reponse => console.log(reponse));
 
   }
 }
