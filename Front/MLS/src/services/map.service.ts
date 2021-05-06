@@ -23,7 +23,7 @@ export class MapService {
 
     const report = new Report(lat, lng, idUser, crimeType, description, date);
 
-    this.http.post<Report>('http://localhost:3000/map/report', report)
+    this.http.post<Report>('https://mon-lyon-sur.herokuapp.com/auth/map/report', report)
       .subscribe(reportResponse => {
         console.log(reportResponse);
       });
@@ -40,7 +40,7 @@ export class MapService {
     });
 
 
-    this.http.get<Report[]>('http://localhost:3000/map/report')
+    this.http.get<Report[]>('https://mon-lyon-sur.herokuapp.com/auth/map/report')
       .subscribe(reportResponse => {
         //console.log(reportResponse);
         reportResponse.forEach(element => {
@@ -55,7 +55,7 @@ export class MapService {
   getAllReports2(): Observable<Report[]> {
 
 
-    return this.http.get<Report[]>('http://localhost:3000/map/report');
+    return this.http.get<Report[]>('https://mon-lyon-sur.herokuapp.com/auth/map/report');
 
   }
   getPath(pointTab: Point[]) {
