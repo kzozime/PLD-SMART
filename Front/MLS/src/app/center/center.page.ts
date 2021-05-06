@@ -33,7 +33,7 @@ export class CenterPage implements OnInit, OnDestroy{
 
 
   leafletMap() {
-    this.map = Leaflet.map('mapId').setView([45.771944, 4.8901709], 12);
+    this.map = Leaflet.map('mapId').setView([45.771944, 4.8901709], 14);
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
 
     //Villeurbanne Marker 
@@ -41,8 +41,9 @@ export class CenterPage implements OnInit, OnDestroy{
     //MyPosition
     this.getLocation();
     //Import all reports
-    this.mapService.getAllReports(this.map);
+    //this.mapService.getAllReports(this.map);
     this.heatMap();
+    this.onLocateMe();
     //this.drawPath();
 
       this.map.on('click', <LeafletMouseEvent>(e) => {
@@ -86,7 +87,7 @@ export class CenterPage implements OnInit, OnDestroy{
         console.log("position geolocation : lat= "+this.latitude+" longi= "+this.longitude);
         this.map.setView([this.latitude,this.longitude],20);
         Leaflet.marker([this.latitude, this.longitude]).addTo(this.map).bindPopup('Me').openPopup();
-
+        this.mapService.getClosestReport(this.latitude,this.longitude,this.map);
         
       }).catch(
       async (error) => {
