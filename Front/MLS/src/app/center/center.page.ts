@@ -33,7 +33,7 @@ export class CenterPage implements OnInit, OnDestroy {
     }
     ngOnInit() {
       // Define interval[ms]
-          const intervalMs = 1000;
+          const intervalMs = 100000;
   
       // Create a subscripton to the observable, so the observable is cancelable.
       // The created observable is directly subscribed and the subscription saved.

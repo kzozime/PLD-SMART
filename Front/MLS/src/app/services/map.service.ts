@@ -92,7 +92,7 @@ export class MapService {
           //notification push
           this.localNotifications.schedule({
             text: 'Attention des incidents ont été signalé près de votre position !',
-            trigger: {at: new Date(new Date().getTime() + 7000)},
+            //trigger: {at: new Date(new Date().getTime()+7000)},
             led: { color: '#FF00FF', on: 500, off: 500 },
             vibrate: true,
             foreground: true,
