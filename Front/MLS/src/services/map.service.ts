@@ -45,7 +45,9 @@ export class MapService {
     .subscribe(reportResponse => {
         //console.log(reportResponse);
         reportResponse.forEach(element => {
-            Leaflet.marker([element.latitude, element.longitude],{icon: redIcon}).addTo(map);
+            Leaflet.marker([element.latitude, element.longitude],{icon: redIcon})
+            .bindPopup("type:"+element.crimeType+"\n date:"+element.date)
+            .addTo(map);
             console.log(element.idUser);
         });
     });
@@ -60,8 +62,10 @@ export class MapService {
 }
   getPath(pointTab: Point[]) {
 
-  return this.http.get('https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf6248705a95d4af6f413eb6e123dcf8c607b7&start='+
-  pointTab[0].lng+','+pointTab[0].lat+'&end='+pointTab[1].lng+','+pointTab[0].lat)
+    const url = 'https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf6248705a95d4af6f413eb6e123dcf8c607b7&start='+
+    pointTab[0].lng+','+pointTab[0].lat+'&end='+pointTab[1].lng+','+pointTab[1].lat;
+    console.log(url);
+  return this.http.get(url);
   
 
 }

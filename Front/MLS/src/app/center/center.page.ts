@@ -37,31 +37,27 @@ export class CenterPage implements OnInit, OnDestroy{
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
 
     //Villeurbanne Marker 
-    Leaflet.marker([45.771944, 4.8901709]).addTo(this.map).bindPopup('Villeurbanne').openPopup();
+    //Leaflet.marker([45.771944, 4.8901709]).addTo(this.map).bindPopup('Villeurbanne').openPopup();
     //MyPosition
     this.getLocation();
     //Import all reports
-    //this.mapService.getAllReports(this.map);
+    this.mapService.getAllReports(this.map);
+    this.heatMap();
     //this.drawPath();
-
-    //Pour afficher un chemin
-    /*antPath([[28.644800, 77.216721], [34.1526, 77.5771]],
-      { color: '#FF0000', weight: 5, opacity: 0.6 })
-      .addTo(this.map);*/
 
       this.map.on('click', <LeafletMouseEvent>(e) => {
         console.log(e.latlng);
         const lat = e.latlng.lat;
         const lng = e.latlng.lng;
         const idUser = "admin";
-        const crimeType = "populationBD";
+        const crimeType = "Vol";
         const description = "populationBD";
         const date = new Date();
 
         //this.mapService.addReport(lat, lng, idUser, crimeType, description, date);
-        this.drawPath(lat, lng);
+        //this.mapService.getAllReports(this.map);
+        //this.drawPath(lat, lng);
         
-
 
     });
   }
@@ -76,7 +72,7 @@ export class CenterPage implements OnInit, OnDestroy{
         navigator.geolocation.getCurrentPosition((position)=>{
           this.myPositionLongitude = position.coords.longitude;
           this.myPositionLatitude = position.coords.latitude;
-          Leaflet.marker([this.myPositionLatitude, this.myPositionLongitude]).addTo(this.map).bindPopup('Me').openPopup();
+          //Leaflet.marker([this.myPositionLatitude, this.myPositionLongitude]).addTo(this.map).bindPopup('Me').openPopup();
         });
     } else {
        console.log("No support for geolocation")
@@ -89,7 +85,9 @@ export class CenterPage implements OnInit, OnDestroy{
         this.longitude = resp.coords.longitude;
         console.log("position geolocation : lat= "+this.latitude+" longi= "+this.longitude);
         this.map.setView([this.latitude,this.longitude],20);
-        this.heatMap();
+        Leaflet.marker([this.latitude, this.longitude]).addTo(this.map).bindPopup('Me').openPopup();
+
+        
       }).catch(
       async (error) => {
         
@@ -104,50 +102,43 @@ export class CenterPage implements OnInit, OnDestroy{
   }
 
   drawPath(lat: number, lng: number){
-    const p1 = new Point(this.latitude, this.longitude);
+    const p1 = new Point(45.77889767785222, 4.8667287826538095);
+    console.log('p1:'+4.8667287826538095+','+45.77889767785222);
     const p2 = new Point(lat, lng);
+    console.log('p2:'+lng+','+lat);
     const tab = [];
     tab.push(p1);
     tab.push(p2);
    this.mapService.getPath(tab).subscribe(res =>{
-    console.log("res api : "+ JSON.stringify(res["features"][0]['geometry']['coordinates']));
-    const tabResult = res["features"][0]['geometry']['coordinates'];
-    console.log("coordinate de 0 : "+tabResult);
-    var i = 0;
-    /*while(lat != tabResult[i+1][1]  lng != tabResult[i+1][0] ){
-      antPath([[tabResult[i][1], tabResult[i][0]], [tabResult[i+1][1], tabResult[i+1][0]]],
-        { color: '#FF0000', weight: 5, opacity: 0.6 })
-        .addTo(this.map);
-     }
-    }*/
-    antPath(tabResult,
-      { color: '#FF0000', weight: 5, opacity: 0.6 })
-      .addTo(this.map);
+    //console.log("res api : "+ JSON.stringify(res["features"][0]['geometry']['coordinates']));
+    //const tabResult = res["features"][0]['geometry']['coordinates'];
+    //console.log("coordinate de 0 : "+tabResult);
+    
+    var layer = L.geoJSON(JSON.parse(JSON.stringify(res))).addTo(this.map);
+    //console.log("verif : "+ res["features"][0]['geometry']['coordinates']);
 
-   /* while(tabResult[i+1][1]){
-      antPath([[tabResult[i][1], tabResult[i][0]], [tabResult[i+1][1], tabResult[i+1][0]]],
-        { color: '#FF0000', weight: 5, opacity: 0.6 })
-        .addTo(this.map);
-        i++;
-    }*/
-
-    /*for(let i=0;i<tabResult.length-1;i++){
-      antPath([[tabResult[i][1], tabResult[i][0]], [tabResult[i+1][1], tabResult[i+1][0]]],
-        { color: '#FF0000', weight: 5, opacity: 0.6 })
-        .addTo(this.map);
-     }*/
   });
   }
 
-  heatMap(){
+  async heatMap(){
 
     var reportData = [];
-    this.mapService.getAllReports2().subscribe(res => {
+    await this.mapService.getAllReports2().subscribe(res => {
       res.forEach(function(r){
-        //console.log(r.date);
-        reportData.push([r.latitude, r.longitude, 5.0]);
+        console.log(r.date);
+        var danger: number;
+        if(r.crimeType === "Vol"){
+          danger = 3;
+        }else if(r.crimeType === "Agression"){
+          danger = 10;
+        }else if(r.crimeType === "Harcèlement"){
+          danger = 6;
+        }else{
+          danger = 1;
+        }
+        reportData.push([r.latitude, r.longitude, danger]);
       })
-      var heat = L.heatLayer(reportData, {radius: 25}).addTo(this.map);
+      var heat = L.heatLayer(reportData, {radius: 40}).addTo(this.map);
     });
 
       /*console.log("le tableau :" + reportData[0]);
