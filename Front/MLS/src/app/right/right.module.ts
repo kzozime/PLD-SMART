@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RightPageRoutingModule } from './right-routing.module';
 
 import { RightPage } from './right.page';
+import { NavbarComponent } from '../components/navbar/navbar.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { RightPage } from './right.page';
     IonicModule,
     RightPageRoutingModule
   ],
-  declarations: [RightPage]
+  declarations: [RightPage, NavbarComponent],
+  providers :[DatePipe]
 })
 export class RightPageModule {}

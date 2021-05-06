@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>right</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+<!--
+  <div *ngFor="let report of arrayReport">
+    <h1> {{ report.crimeType }}</h1>
+  </div>
+-->
+  <div class="reports-ctn">
+    <div *ngFor="let report of arrayReport" class="report-card">
+      <h3>{{ report.crimeType }}</h3>
+      <p>{{ report.description }}</p>
+      <p class="infos-report">{{ report.longitude }},{{ report.latitude }} - {{ report.created_at }}</p>
+    </div>
+  </div>
+  <app-navbar style="position:fixed;bottom:0;left:0;z-index:2000;"></app-navbar>
 </ion-content>

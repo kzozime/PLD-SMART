@@ -20,6 +20,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
 
+  redirectReport(){
+    this.router.navigate(['/right']);
+  }
+
   isActive(num:number):string{
     if(this.router.url === '/profile' && num === 1){
       return 'active';
