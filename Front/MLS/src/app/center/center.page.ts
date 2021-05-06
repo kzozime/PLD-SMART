@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ɵgetDebugNode__POST_R3__ } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { antPath } from 'leaflet-ant-path';
-import { MapService } from 'src/services/map.service';
+import { MapService } from 'src/app/services/map.service';
 import { Report } from '../models/user/report.model';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { PopSignalService } from '../services/pop-signal.service';
@@ -64,13 +64,21 @@ export class CenterPage implements OnInit, OnDestroy {
   }
 
   async onLocateMe() {
+    var blueIcon = new Leaflet.Icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
     this.geolocation.getCurrentPosition().then(
       async (resp) => {
         this.latitude = resp.coords.latitude;
         this.longitude = resp.coords.longitude;
         console.log("position geolocation : lat= " + this.latitude + " longi= " + this.longitude);
         this.map.setView([this.latitude, this.longitude], 20);
-        Leaflet.marker([this.latitude, this.longitude]).addTo(this.map).bindPopup('Me').openPopup();
+        Leaflet.marker([this.latitude, this.longitude],{ icon: blueIcon }).addTo(this.map).bindPopup('Me').openPopup();
         this.mapService.getClosestReport(this.latitude, this.longitude, this.map);
 
       }).catch(
