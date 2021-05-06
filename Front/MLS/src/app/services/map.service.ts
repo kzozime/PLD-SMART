@@ -4,13 +4,15 @@ import { Report } from 'src/app/models/user/report.model';
 import * as Leaflet from 'leaflet';
 import { Observable } from 'rxjs';
 import { Point } from 'src/app/models/point.model';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 @Injectable({
   providedIn: 'root'
 })
 
 
 export class MapService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private localNotifications : LocalNotifications) { }
 
   addReport(
     lat: number,
@@ -87,6 +89,14 @@ export class MapService {
           .bindPopup("type:" + element.crimeType + "\n date:" + element.date + "ATTENTION !!!")
           .openPopup()
           .addTo(map);
+          //notification push
+          this.localNotifications.schedule({
+            text: 'Attention des incidents ont été signalé près de votre position !',
+            trigger: {at: new Date(new Date().getTime() + 7000)},
+            led: { color: '#FF00FF', on: 500, off: 500 },
+            vibrate: false,
+            sound: null
+          });
         }
         /*Leaflet.circleMarker([element.latitude, element.longitude])
           .bindPopup("type:" + element.crimeType + "\n date:" + element.date)
