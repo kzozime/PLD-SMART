@@ -82,7 +82,7 @@ export class MapService {
         console.log("distance : " + d +" m avec i = "+i++);
         var t = now-reportTime;
         console.log(" time diff : " + reportTime);
-        if(d <= 500 && now-reportTime < 3600000){
+        if(d <= 100 && now-reportTime < 3600000){
           Leaflet.marker([element.latitude, element.longitude])
           .bindPopup("type:" + element.crimeType + "\n date:" + element.date + "ATTENTION !!!")
           .openPopup()
