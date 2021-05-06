@@ -15,7 +15,7 @@ export class MailingService {
     );
     
     cred = this.oauth2Client.setCredentials({
-        refresh_token: "1//04EfManQrNx7GCgYIARAAGAQSNwF-L9IroVub8_Fc3GtvuUx5iiaeMPC2dGomS2yivVMzumo52xJvp4RXXSQDDZ_GO8Eu5PfhKuU"
+        refresh_token: "1//04-BHubUHc9kcCgYIARAAGAQSNwF-L9Ir13s9n3iHbO_mXiY29UxptTe3DkXF_Fa_syIaFLzP0A4OAOMNpW3_MgDBxbNZb_WhOmY"
     });
     
     accessToken = this.oauth2Client.getAccessToken();
@@ -27,7 +27,7 @@ export class MailingService {
           user: "ghali.elalaoui.elabdellaoui@gmail.com", 
           clientId: "231277696886-g48cpfk6l19957ilvginheri8f5ni5ah.apps.googleusercontent.com",
           clientSecret: "uxXu310BIQQTAjSo8PKQIwmZ",
-          refreshToken: "1//04EfManQrNx7GCgYIARAAGAQSNwF-L9IroVub8_Fc3GtvuUx5iiaeMPC2dGomS2yivVMzumo52xJvp4RXXSQDDZ_GO8Eu5PfhKuU",
+          refreshToken: "1//04-BHubUHc9kcCgYIARAAGAQSNwF-L9Ir13s9n3iHbO_mXiY29UxptTe3DkXF_Fa_syIaFLzP0A4OAOMNpW3_MgDBxbNZb_WhOmY",
           accessToken: this.accessToken
         }
     });
@@ -41,7 +41,7 @@ export class MailingService {
             to: email.toString(),
             subject: subject,
             generateTextFromHTML: true,
-            html: "<h1>Hello "+username.toString()+"</h1><p>Here's you code: "+code.toString()
+            html: "<h1>Hello you have been invited to join our apps Mon Lyon Sur</h1><p><h1> Please sign up using this url:</h1> "+code.toString()
        };
         this.smtpTransport.sendMail(this.mailOptions, (error, response) => {
             error ? console.log(error) : console.log(response);

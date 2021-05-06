@@ -8,13 +8,11 @@ export class MailingController {
     constructor(private mailingService: MailingService){}
 
     @Post()
-    async findAll(@Body() mailInfos: Mail): Promise<any> {
-        var jsonToString = JSON.stringify(mailInfos);
-        var mail = JSON.parse(jsonToString);
-        console.log(mail.mailInfos.subject);
+    async findAll(@Body('subject') subject: string, @Body('email') mail: string,@Body('code') code:string,@Body('username') username:string): Promise<any> {
+        console.log(subject);
         //console.log(mail['mailInfos']['subject']);
-        this.mailingService.sendMail(mail.mailInfos.subject, mail.mailInfos.email, mail.mailInfos.code, mail.mailInfos.username);
-        return mail.mailInfos.email+" "+mail.mailInfos.code+" "+mail.mailInfos.username;
+        this.mailingService.sendMail(subject, mail, code, username);
+
     }
 }
 
