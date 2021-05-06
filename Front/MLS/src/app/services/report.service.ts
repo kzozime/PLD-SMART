@@ -18,6 +18,6 @@ export class ReportService {
     date:Date,
     userId:string
     ):Observable<Report>{
-      return this.http.post<Report>('https://mon-lyon-sur.herokuapp.com/auth/map/report', {latitude : latitude, longitude : longitude, idUser : userId, crimeType : typeSignal, description : descriptionSignal, date : date});
+      return this.http.post<Report>('https://mon-lyon-sur.herokuapp.com/map/report', {latitude : latitude, longitude : longitude, idUser : userId, crimeType : typeSignal, description : descriptionSignal, date : date});
   }
 }
