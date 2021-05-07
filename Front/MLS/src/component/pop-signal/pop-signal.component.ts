@@ -50,6 +50,7 @@ export class PopSignalComponent implements OnInit {
         this.reportService.report(typeSignal, descriptionSignal, longitude, latitude, date, userId).subscribe(reportResponse => {
           console.log(reportResponse.idUser);
         })
+        this.closePopUpSignal();
       }
     )
    

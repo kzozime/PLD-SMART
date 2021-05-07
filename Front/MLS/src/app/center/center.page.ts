@@ -79,7 +79,7 @@ export class CenterPage implements OnInit, OnDestroy {
         this.latitude = resp.coords.latitude;
         this.longitude = resp.coords.longitude;
         console.log("position geolocation : lat= " + this.latitude + " longi= " + this.longitude);
-        this.map.setView([this.latitude, this.longitude],14);
+        this.map.setView([this.latitude, this.longitude],20);
         if (this.myPositionMarker) {
           this.myPositionMarker.remove();
           this.myPositionMarker = null;
@@ -106,7 +106,6 @@ export class CenterPage implements OnInit, OnDestroy {
       this.myPath.remove();
     }
     
-    await this.onLocateMe();
     console.log("Veuillez indiquer votre destination.");
     this.map.on('click', <LeafletMouseEvent>(e) => {
       if (pathState) {
