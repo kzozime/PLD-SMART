@@ -8,16 +8,17 @@ export class MapController {
     constructor(private readonly mapService: MapService) { }
 
     @Post('report')
+    //Async function which create a report an return a boolean (true) in a http response if it succed 
     async createReport(@Body() createReportDto: CreateReportDto) {
         const report = await this.mapService.reportCrime(createReportDto);
         if(!report){
             throw new BadGatewayException('bad arguments for report');
         }
-        console.log('new report created !');
         return {'success' : true};
     }
-
+    
     @Get('report')
+    //Async function which return all reports stored in database in a http response
     async getReports(): Promise<Report[]> {
         console.log('test map/report');
         return this.mapService.getReports();
