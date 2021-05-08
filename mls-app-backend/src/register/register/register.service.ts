@@ -10,16 +10,15 @@ export class RegisterService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
   ) { }
-
+  //Async function which create a user and returns it after hashing the password.
   async create(createUserDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(createUserDto);
     createdUser.inviteCode = "MLS-"+createdUser._id ;
     const salt = await bcrypt.genSalt();
     createdUser.password = await bcrypt.hash(createdUser.password, salt);
-    console.log(createdUser);
     return createdUser.save();
   }
-
+  //Async function which returns all users in database
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
   }
