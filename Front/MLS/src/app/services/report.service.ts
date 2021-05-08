@@ -11,6 +11,9 @@ export class ReportService {
 
   constructor(private http:HttpClient) { }
 
+  /**
+   * Creates a new report
+   */
   report(typeSignal:string, 
     descriptionSignal:string,
     longitude:number,

@@ -14,6 +14,9 @@ export class RightPage implements OnInit {
 
   constructor(private mapService : MapService, public datepipe : DatePipe) { }
 
+  /**
+   * async function which displays a list of all the reports 
+   */
   async ngOnInit() {
     this.mapService.getAllReports2().subscribe(reportResponse => {
       reportResponse.forEach(element => {

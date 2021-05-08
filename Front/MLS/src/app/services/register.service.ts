@@ -9,6 +9,10 @@ import { Observable } from 'rxjs';
 export class RegisterService {
 
   constructor(private http : HttpClient) { }
+
+  /**
+   * registers an useer from a form
+   */
   register(firstName: string, lastName: string, dateOfBirth: Date,
      email: string, password: String, inviteCode: string): Observable<User>{
     console.log("register service post");

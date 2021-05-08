@@ -11,6 +11,7 @@ import { StorageService } from 'src/app/services/storage-service.service';
 export class AuthGuardService implements CanActivate {
   constructor(private router: Router,private storage: StorageService) {}
 
+  //async function which allows you to use the app only if you're logged
   async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
     console.log(route);
     const isAuth = await this.storage.get('isAuth');

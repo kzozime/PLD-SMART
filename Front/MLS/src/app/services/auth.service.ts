@@ -13,6 +13,7 @@ export class AuthService {
 
   constructor(private http : HttpClient, private storage: StorageService) { }
 
+  //function which logs you with an email and a password
   login(email:string,password:string): Observable<User>{
     //console.log("isauth authservice:"+this.storage.get('isauth'))
     console.log("service post");

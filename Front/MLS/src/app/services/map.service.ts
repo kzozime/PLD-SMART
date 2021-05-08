@@ -14,6 +14,7 @@ export class MapService {
   constructor(private http: HttpClient,
               private localNotifications : LocalNotifications) { }
 
+  // function which permittes you to add an report on the map
   addReport(
     lat: number,
     lng: number,
@@ -31,6 +32,7 @@ export class MapService {
       });
   }
 
+  //function which gets all the reports from the server and display them on the map
   async getAllReports(map: Leaflet.Map): Promise<void> {
     var redIcon = new Leaflet.Icon({
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
@@ -54,12 +56,15 @@ export class MapService {
 
   }
 
+  //function which gets all the reports from the server
   getAllReports2(): Observable<Report[]> {
 
 
     return this.http.get<Report[]>('https://mon-lyon-sur.herokuapp.com/map/report');
 
   }
+
+  //function wich returns a path between 2 points
   getPath(pointTab: Point[]) {
 
     const url = 'https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf6248705a95d4af6f413eb6e123dcf8c607b7&start=' +
@@ -69,6 +74,9 @@ export class MapService {
 
   }
 
+  /**
+   * function which returns the closest reports from a location
+   * */
   getClosestReport(lat: number, lng: number, map: Leaflet.Map){
     var now = Date.now().valueOf();
     //console.log('now :'+now);
