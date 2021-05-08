@@ -12,10 +12,10 @@ Le Back end dans le dossier mls-app-backend en nestjs, un framework Typescript p
 ## Guide d'installation : 
 ### FrontEnd : 
 Sous le répertoire Front/MLS :
-  - lancer la commande <npm install> pour télecharger les module node nécessaire au fonctionnnement de l'application angular.
+  - lancer la commande <npm install> pour télecharger les modules nodeJS nécessaires au fonctionnnement de l'application angular.
   - compiler et lancer le front avec <ionic serve>
 ### BackEnd :
 Sous le répertoire mls-app-backend :
-  - lancer la commande <npm install> pour télecharger les module node nécessaire au fonctionnnement de l'application angular.
+  - lancer la commande <npm install> pour télecharger les modules nodeJS nécessaires au fonctionnnement de l'application angular.
   - compiler et lancer le back avec <npm run start>
 
