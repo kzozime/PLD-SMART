@@ -8,7 +8,8 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>){}
-
+  
+  //Async function which searches a user who has this credentials and returns it 
   async userConnection(mail: string, passwd: string): Promise<User> {
 
     console.log(mail);
