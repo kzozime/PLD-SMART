@@ -38,6 +38,7 @@ export class ProfilePage implements OnInit {
     this.dateBirth = this.datepipe.transform(this.dateOfBirth,'dd/MM/yyyy');
     this.nbInvit = await this.storage.get('nbInvit');
   }
+  // before the user logout disconnects clear the local storage of and the  map
   onDisconnect(){
     this.storage.clear();
     this.centerMap.delete();

@@ -15,6 +15,7 @@ export class TabnavPage implements OnInit {
   ngOnInit() {
   }
 
+  //check if the location of the user is enable to go to the main page
   ionViewDidEnter(){
     if(this.isLocated()){
       this.router.navigateByUrl('/center');

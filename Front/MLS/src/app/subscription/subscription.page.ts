@@ -24,6 +24,7 @@ export class SubscriptionPage implements OnInit {
     this.router.navigate(['/']);
   }
   
+  // initialiaze the subscription form
   initForm() {
     this.subForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

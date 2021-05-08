@@ -48,6 +48,7 @@ export class LoginPage implements OnInit {
     this.loginCtn = !this.loginCtn;
   }
 
+  // when the user connects we store his information in the local storage
   onSubmitForm() {
     
     const email = this.logForm.get('email').value;

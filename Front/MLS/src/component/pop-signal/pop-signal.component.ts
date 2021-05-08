@@ -27,7 +27,7 @@ export class PopSignalComponent implements OnInit {
   ngOnInit() {
     this.initForm();
   }
-
+//initialize report dorm
   initForm(){
     this.signalForm = this.formBuilder.group({
       typeSignal:[],
@@ -35,6 +35,7 @@ export class PopSignalComponent implements OnInit {
     });
   }
 
+  
   async onSubmitForm(){
     const typeSignal = this.signalForm.get('typeSignal').value;
     const descriptionSignal = this.signalForm.get('descriptionSignal').value;
@@ -59,7 +60,7 @@ export class PopSignalComponent implements OnInit {
   }
 
 
-
+//allow us to hide the popSignal component
   closePopUpSignal(){
     this.popSignal.displayPop = false;
   }
